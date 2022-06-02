@@ -25,9 +25,10 @@ const Home: NextPage = ({ providers }: InferGetServerSidePropsType<typeof getSer
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const providers = await getProviders();
   return {
-    props: { providers },
+    props: {
+      providers: await getProviders(),
+    },
   };
 };
 

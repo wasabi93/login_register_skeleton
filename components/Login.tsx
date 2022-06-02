@@ -74,7 +74,8 @@ const LoginForm = ({ providers }: InferGetServerSidePropsType<typeof getServerSi
             <p className={styles.loginText}>Sign in</p>
           </button>
           {providers &&
-            Object.values(providers).map((provider) => (
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            Object.values(providers).map((provider: any) => (
               <div key={provider.name}>
                 <button onClick={() => signIn(provider.id)} className={getStyle(provider.name)}>
                   <p className={styles.loginText}>Sign in with {provider.name}</p>
