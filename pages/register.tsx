@@ -53,8 +53,6 @@ const LoginForm = () => {
 
   // }
 
-  console.log('aaa', statusRegister);
-
   return (
     <div className={styles.container}>
       <div className={styles.main}>

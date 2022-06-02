@@ -24,10 +24,9 @@ export default async (
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const userAfterHashed = new User({ ...req.body, password: hashedPassword });
       const user = await User.create(userAfterHashed);
-      res.status(200).json({ token: bcrypt.hash(req.body.username, 10) });
-      res.status(201).json({ success: true, data: user });
+      return res.status(200).json({ token: user._id.toString() });
     } else {
-      res.status(404).json({ message: 'username already exist' });
+      return res.status(404).json({ message: 'username already exist' });
     }
   } catch (error) {
     console.log('error', error);
