@@ -29,6 +29,7 @@
           width: 30vw;
           flex-direction: column;
           .textInput {
+            height: 6vh;
             margin-bottom: 2vh;
             padding: 2vh 1vw;
           }
@@ -37,12 +38,18 @@
           .button {
             width: 30vw;
             background-color: rgb(139, 139, 224);
-            padding: 2vh 0;
+            padding: 1.5vh 0;
             border: none;
             border-radius: 5px;
             margin-bottom: 2vh;
             .loginText {
               color: white;
+              font-size: 2.5vh;
+            }
+          }
+          .register {
+            .extraText {
+              font-size: 2.5vh;
             }
           }
         }

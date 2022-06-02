@@ -84,7 +84,7 @@ const LoginForm = ({ providers }: InferGetServerSidePropsType<typeof getServerSi
             ))}
           <div className={styles.register}>
             <Link href="/register">
-              <a>Register</a>
+              <a className={styles.registerText}>Register</a>
             </Link>
           </div>
         </div>

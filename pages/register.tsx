@@ -82,7 +82,7 @@ const LoginForm = () => {
               </button>
               <div className={styles.register}>
                 <Link href="/">
-                  <a>Login</a>
+                  <a className={styles.extraText}>Login</a>
                 </Link>
               </div>
             </div>
