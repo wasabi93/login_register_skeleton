@@ -1,0 +1,77 @@
+.container {
+  width: 100vw;
+  height: 100%;
+  background-color: rgb(180, 216, 240);
+  .main {
+    display: flex;
+    flex: 1;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    .loginContainer {
+      display: flex;
+      width: 40vw;
+      height: 70vh;
+      border-radius: 10px;
+      border: 1px solid wheat;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      flex-direction: column;
+      .titleLogin {
+        height: 10vh;
+        font-size: 5vh;
+      }
+      .loginForm {
+        height: 50vh;
+        width: 30vw;
+        justify-content: center;
+        align-items: center;
+        .input {
+          display: flex;
+          width: 30vw;
+          flex-direction: column;
+          .textInput {
+            margin-bottom: 2vh;
+            padding: 10px 5px;
+          }
+        }
+        .bottomForm {
+          .button {
+            width: 30vw;
+            background-color: rgb(139, 139, 224);
+            padding: 10px 0px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 2vh;
+            .loginText {
+              color: white;
+            }
+          }
+          .Facebook {
+            width: 30vw;
+            background-color: rgb(57, 57, 230);
+            padding: 10px 0px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 2vh;
+            .loginText {
+              color: white;
+            }
+          }
+          .GitHub {
+            width: 30vw;
+            background-color: rgb(49, 49, 49);
+            padding: 10px 0px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 2vh;
+            .loginText {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
