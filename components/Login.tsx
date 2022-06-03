@@ -53,8 +53,6 @@ const LoginForm = ({ providers }: InferGetServerSidePropsType<typeof getServerSi
     }
   };
 
-  console.log('???', providers);
-
   return (
     <div className={styles.loginContainer}>
       <h1 className={styles.titleLogin}>Login</h1>
