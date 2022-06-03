@@ -1,13 +1,19 @@
-import Link from 'next/link';
 import React from 'react';
+import { signOut, useSession } from 'next-auth/react';
 import { logout, withAuthSync } from '../lib/auth';
 
 import styles from '../styles/register.module.scss';
 
 const Status = () => {
+  const { data: session } = useSession();
+
   const handleLogout = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    logout();
+    if (session) {
+      signOut();
+    } else {
+      logout();
+    }
   };
 
   return (
@@ -16,11 +22,9 @@ const Status = () => {
         <div className={styles.loginContainer}>
           <h1 className={styles.titleLogin}>Login success</h1>
           <div className={styles.register}>
-            <Link href="/">
-              <a>
-                <button onClick={handleLogout}>Log out</button>
-              </a>
-            </Link>
+            <a>
+              <button onClick={handleLogout}>Log out</button>
+            </a>
           </div>
         </div>
       </div>

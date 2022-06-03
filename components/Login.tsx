@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React, { useState, memo } from 'react';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { InferGetServerSidePropsType } from 'next';
 import { login } from '../lib/auth';
 
@@ -10,11 +10,12 @@ import { getServerSideProps } from '../pages';
 
 const LoginForm = ({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [user, setUser] = useState<IUser>({ username: '', password: '' });
+  const [statusLogin, setStatusLogin] = useState<boolean>(true);
   const contentType = 'application/json';
 
   const getUser = async (user: IUser) => {
     try {
-      const res = await fetch('/api/login', {
+      const res = await fetch('/api/loginId', {
         method: 'POST',
         headers: {
           Accept: contentType,
@@ -25,8 +26,11 @@ const LoginForm = ({ providers }: InferGetServerSidePropsType<typeof getServerSi
 
       // Throw error with status code in case Fetch API req failed
       if (res.status === 200) {
+        setStatusLogin(true);
         const { token } = await res.json();
         login({ token }, true);
+      } else {
+        setStatusLogin(false);
       }
     } catch (error) {
       console.log(error);
@@ -69,26 +73,33 @@ const LoginForm = ({ providers }: InferGetServerSidePropsType<typeof getServerSi
             onChange={(e) => setUser({ ...user, password: e.target.value })}
           />
         </div>
+        {statusLogin === false ? (
+          <div style={{ height: '2vh' }}>
+            <p style={{ color: 'red' }}>Please try again!</p>
+          </div>
+        ) : (
+          <div style={{ height: '2vh' }} />
+        )}
         <div className={styles.bottomForm}>
           <button className={styles.button}>
             <p className={styles.loginText}>Sign in</p>
           </button>
-          {providers &&
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            Object.values(providers).map((provider: any) => (
-              <div key={provider.name}>
-                <button onClick={() => signIn(provider.id)} className={getStyle(provider.name)}>
-                  <p className={styles.loginText}>Sign in with {provider.name}</p>
-                </button>
-              </div>
-            ))}
-          <div className={styles.register}>
-            <Link href="/register">
-              <a className={styles.registerText}>Register</a>
-            </Link>
-          </div>
         </div>
       </form>
+      {providers &&
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        Object.values(providers).map((provider: any) => (
+          <div key={provider.name}>
+            <button onClick={() => signIn(provider.id)} className={getStyle(provider.name)}>
+              <p className={styles.loginText}>Sign in with {provider.name}</p>
+            </button>
+          </div>
+        ))}
+      <div className={styles.register}>
+        <Link href="/register">
+          <a className={styles.registerText}>Register</a>
+        </Link>
+      </div>
     </div>
   );
 };
