@@ -13,6 +13,8 @@ const Status = dynamic(() => import('./status'));
 const Home: NextPage = ({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { data: session } = useSession();
 
+  console.log('session', session);
+
   return (
     <div className={styles.container}>
       <Head>
